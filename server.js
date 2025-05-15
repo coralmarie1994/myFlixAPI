@@ -25,7 +25,7 @@ const server = http.createServer((request, response) => { //when visiting site, 
       response.writeHead(404, {'Content-Type':'text/plain'}); //if error, show the erorr
       response.write('Error: File Not Found');
     } else {
-      response.write(200, {'Content-Type':'text/html'}); //if works 200- OK send file to browser for view
+      response.writeHead(200, {'Content-Type':'text/html'}); //if works 200- OK send file to browser for view
       response.write(data);
     }
     response.end();
