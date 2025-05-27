@@ -88,5 +88,8 @@
   "bugs": {
     "url": "https://github.com/coralmarie1994/myFlixAPI/issues"
   },
-  "homepage": "https://github.com/coralmarie1994/myFlixAPI#readme"
+  "homepage": "https://github.com/coralmarie1994/myFlixAPI#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
 }
