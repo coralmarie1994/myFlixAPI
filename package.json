@@ -71,11 +71,14 @@
     "toidentifier": "^1.0.1",
     "type-is": "^2.0.1",
     "unpipe": "^1.0.0",
+    "uuid": "^11.1.0",
     "vary": "^1.1.2",
     "wrappy": "^1.0.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
