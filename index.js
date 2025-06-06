@@ -1,4 +1,4 @@
-//Running nodemon for refresh of terminal while updating npm run dev (added to dev package.json)
+//Running nodemon for refresh of terminal while updating npm run dev (added to dev package.json) :) 
 const express = require('express');
 const app = express(); //express js app
 const morgan = require('morgan');//logging requests 'common'
@@ -242,7 +242,7 @@ let movies=[
     }
 ];
 
-//CRUD -Create, Read, Update, Delete 
+//CRUD -Create=Post Read=Get, Update=Put, Delete=Delete
 
 // Error handling (middleware, will run during)
 app.use((err, req, res, next) => {
