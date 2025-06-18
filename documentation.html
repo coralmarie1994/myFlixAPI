@@ -1,139 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Documentation</title>
-    <link rel="stylesheet" href="stylesdoc.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>API Documentation</title>
+  <link rel="stylesheet" href="stylesdoc.css" />
 </head>
 <body>
-  <header></header>
-        <h1>API Documentation</h1>
+  <header>
+    <h1>API Documentation</h1>
   </header>
-  <main>
-    <section id="introduction">
-      <h3>Introduction</h3>
-      <p>This API allows you to register a user profile to access movie information, create a favorite list, and manage user data.</p>
-    </section>
-    <section id="endpoints">
-      <br>
-      <h2>Users API Endpoints</h2>
 
-        <article class="endpoint">
-          <h3>Get User Information</h3>
-          <p><strong>Method:</strong> GET</p>
-          <p><strong>URL:</strong> /users</p>
-          <p><strong>Description:</strong> Retrieve information about all users.</p>
-          <p><strong>Response:</strong>
-          <br>200 OK: Array of user objects <br> 500 Internal Error: Something's Gone Wrong</p>
-        </article>
-        <article class="endpoint">
-          <h3>Get Single User Information</h3>
-          <p><strong>Method:</strong> GET</p>
-          <p><strong>URL:</strong> /users/:Username</p>
-          <p><strong>Parameter</strong>Name: of username to retrieve</p>
-          <p><strong>Description:</strong> Retrieve information about single user by username.</p>
-          <p><strong>Response:</strong>
-          <br>200 OK: Array of user object 
-          <br>404 Not Found: User not found.
-          <br>500 Internal Error: Something's gone wrong</p>
-        </article>
-        <article class="endpoint">
-          <h3>Create/Register a User</h3>
-          <p><strong>Method:</strong> POST</p>
-          <p><strong>URL:</strong> /users</p>
-          <p><strong>Body (JSON)</strong><br>{"Username":"Name",<br> "Password": "Password", <br> "Email": "email@example.com", <br> "Birthday": "1994-11-11"}</p>
-          <p><strong>Description:</strong> Create a new user with Username, Password, Email & Birthdate.</p>
-          <p><strong>Response:</strong>
-          <br>201 Created: New created user object
-          <br>400 Bad Request: Username already exists
-          <br>500 Internal Error: Something's gone wrong</p>
-        </article>
-        <article class="endpoint">
-          <h3>Update User</h3>
-          <p><strong>Method:</strong> PUT</p>
-          <p><strong>URL:</strong> /users/:Username</p>
-          <p><strong>Body (JSON)</strong><br>{"Username":"newUsername",<br> "Password": "newPassword", <br> "Email": "newEmail@example.com", <br> "Birthday": "1994-11-11"}</p>
-          <p><strong>Description:</strong> Update an existing user with new Username, Password, Email & Birthdate.</p>
-          <p><strong>Response:</strong>
-          <br>200 OK: Updated user object
-          <br>404 Not Found: User not found
-          <br>500 Internal Error: Something's gone wrong</p>
-        </article>
-        <article class="endpoint">
-          <h3>Update User</h3>
-          <p><strong>Method:</strong> POST</p>
-          <p><strong>URL:</strong> /users/:e/Movies/:MovieID</p>
-          <p><strong>Parameters:</strong><br>Username: of user wanting to modify<br> MovieID: The Object ID for movie to be added to favorites</p>
-          <p><strong>Description:</strong> Adds a movie objectId to users favorite array list.</p>
-          <p><strong>Response:</strong>
-          <br>200 OK: Updated user object
-          <br>500 Internal Error: Something's gone wrong</p>
-        </article>
-        <article class="endpoint">
-          <h3>Remove Movie from Favorites</h3>
-          <p><strong>Method:</strong> DELETE</p>
-          <p><strong>URL:</strong> /users/:Username/Movies/:MovieID</p>
-          <p><strong>Parameters:</strong><br>Username: of user wanting to modify<br> MovieID: The Object ID for movie to remove from favorites</p>
-          <p><strong>Description:</strong> Adds a movie objectId to users favorite array list.</p>
-          <p><strong>Response:</strong>
-          <br>200 OK: Success message
-          <br>404 Not Found: User or movie not found
-          <br>500 Internal Error: Something's gone wrong</p>
-        </article>
-        <article class="endpoint">
-          <h3>Delete User</h3>
-          <p><strong>Method:</strong> DELETE</p>
-          <p><strong>URL:</strong> /users/:Username</p>
-          <p><strong>Parameters:</strong><br>Username: of user to be deleted</p>
-          <p><strong>Description:</strong> Deletes a user from the database.</p>
-          <p><strong>Response:</strong>
-          <br>200 OK: Success message
-          <br>404 Not Found: User not found
-          <br>500 Internal Error: Something's gone wrong</p>
-        </article>
-          <br>
-      <h2>Movies API Endpoints</h2>
-        <article class="endpoint">
-          <h3>Get All Movies</h3>
-          <p><strong>Method:</strong> GET</p>
-          <p><strong>URL:</strong> /movies</p>
-          <p><strong>Description:</strong> Retrieve information about all movies on API database.</p>
-          <p><strong>Response:</strong>
-          <br>200 OK: Array of movie documents
-          <br>500 Internal Error: Something's gone wrong</p>
-        </article>
-        <article class="endpoint">
-          <h3>Get Movie by Title</h3>
-          <p><strong>Method:</strong> GET</p>
-          <p><strong>URL:</strong> /movies/:Title</p>
-          <p><strong>Parameter</strong>Title: of movie to retreive</p>
-          <p><strong>Description:</strong> Retrieve information about single movie title.</p>
-          <p><strong>Response:</strong>
-          <br>200 OK: Array of matching movie object
-          <br>404 Not Found: Movie not found 
-          <br>500 Internal Error: Something's gone wrong</p>
-        </article>
-        <article class="endpoint">
-          <h3>Get Movie Genre</h3>
-          <p><strong>Method:</strong> GET</p>
-          <p><strong>URL:</strong> /genre/:Name</p>
-           <p><strong>Parameter</strong>Name: of genre to retreive</p>
-          <p><strong>Description:</strong> Retrieve information about genre by name.</p>
-          <p><strong>Response:</strong>
-          <br>200 OK: The genre description
-          <br>404 Not Found: Movie not found 
-          <br>500 Internal Error: Something's gone wrong</p>
-        </article>
-        <article class="endpoint">
-          <h3>Get Director</h3>
-          <p><strong>Method:</strong> GET</p>
-          <p><strong>URL:</strong> /directors/:Name</p>
-           <p><strong>Parameter</strong>Name: of director to retreive</p>
-          <p><strong>Description:</strong> Retrieve information about director by name.</p>
-          <p><strong>Response:</strong>
-          <br>200 OK: The directors (bio, birth, death)
-          <br>404 Not Found: Movie not found 
-          <br>500 Internal Error: Something's gone wrong</p>
-        </article>
-      
+  <section id="introduction">
+    <h3>Introduction</h3>
+    <p>This API allows you to register a user profile to access movie information, create a favorites list, and manage user data.</p>
+  </section>
+
+  <section id="endpoints">
+    <h2>Users API Endpoints</h2>
+
+    <article class="endpoint">
+      <h3>Get All Users</h3>
+      <p><strong>Method:</strong> GET</p>
+      <p><strong>URL:</strong> /users</p>
+      <p><strong>Description:</strong> Retrieve information about all users.</p>
+      <p><strong>Response:</strong><br>200 OK: Array of user objects<br>500 Internal Error: Something went wrong</p>
+    </article>
+
+    <article class="endpoint">
+      <h3>Get Single User Information</h3>
+      <p><strong>Method:</strong> GET</p>
+      <p><strong>URL:</strong> /users/:Username</p>
+      <p><strong>Parameter:</strong> Username to retrieve</p>
+      <p><strong>Description:</strong> Retrieve information about a single user by username.</p>
+      <p><strong>Response:</strong><br>200 OK: User object<br>404 Not Found: User not found<br>500 Internal Error: Something went wrong</p>
+    </article>
+
+    <article class="endpoint">
+      <h3>Create/Register a User</h3>
+      <p><strong>Method:</strong> POST</p>
+      <p><strong>URL:</strong> /users</p>
+      <p><strong>Body (JSON):</strong><br>{"Username":"Name", "Password": "Password", "Email": "email@example.com", "Birthday": "1994-11-11"}</p>
+      <p><strong>Description:</strong> Create a new user with Username, Password, Email, and Birthdate.</p>
+      <p><strong>Response:</strong><br>201 Created: New user object<br>400 Bad Request: Username already exists<br>500 Internal Error: Something went wrong</p>
+    </article>
+
+    <article class="endpoint">
+      <h3>Update User</h3>
+      <p><strong>Method:</strong> PUT</p>
+      <p><strong>URL:</strong> /users/:Username</p>
+      <p><strong>Body (JSON):</strong><br>{"Username":"newUsername", "Password": "newPassword", "Email": "newEmail@example.com", "Birthday": "1994-11-11"}</p>
+      <p><strong>Description:</strong> Update an existing user's information.</p>
+      <p><strong>Response:</strong><br>200 OK: Updated user object<br>404 Not Found: User not found<br>500 Internal Error: Something went wrong</p>
+    </article>
+
+    <article class="endpoint">
+      <h3>Add Movie to Favorites</h3>
+      <p><strong>Method:</strong> POST</p>
+      <p><strong>URL:</strong> /users/:Username/Movies/:MovieID</p>
+      <p><strong>Parameters:</strong><br>Username: The user<br>MovieID: The ObjectId of the movie to add</p>
+      <p><strong>Description:</strong> Add a movie to the user's list of favorite movies.</p>
+      <p><strong>Response:</strong><br>200 OK: Updated user object<br>500 Internal Error: Something went wrong</p>
+    </article>
+
+    <article class="endpoint">
+      <h3>Remove Movie from Favorites</h3>
+      <p><strong>Method:</strong> DELETE</p>
+      <p><strong>URL:</strong> /users/:Username/Movies/:MovieID</p>
+      <p><strong>Parameters:</strong><br>Username: The user<br>MovieID: The ObjectId of the movie to remove</p>
+      <p><strong>Description:</strong> Remove a movie from the user's list of favorite movies.</p>
+      <p><strong>Response:</strong><br>200 OK: Success message<br>404 Not Found: User or movie not found<br>500 Internal Error: Something went wrong</p>
+    </article>
+
+    <article class="endpoint">
+      <h3>Delete User</h3>
+      <p><strong>Method:</strong> DELETE</p>
+      <p><strong>URL:</strong> /users/:Username</p>
+      <p><strong>Parameters:</strong><br>Username: The user to delete</p>
+      <p><strong>Description:</strong> Delete a user from the database.</p>
+      <p><strong>Response:</strong><br>200 OK: Success message<br>404 Not Found: User not found<br>500 Internal Error: Something went wrong</p>
+    </article>
+
+    <h2>Movies API Endpoints</h2>
+
+    <article class="endpoint">
+      <h3>Get All Movies</h3>
+      <p><strong>Method:</strong> GET</p>
+      <p><strong>URL:</strong> /movies</p>
+      <p><strong>Description:</strong> Retrieve all movies in the database.</p>
+      <p><strong>Response:</strong><br>200 OK: Array of movie objects<br>500 Internal Error: Something went wrong</p>
+    </article>
+
+    <article class="endpoint">
+      <h3>Get Movie by Title</h3>
+      <p><strong>Method:</strong> GET</p>
+      <p><strong>URL:</strong> /movies/:Title</p>
+      <p><strong>Parameter:</strong> Title of the movie to retrieve</p>
+      <p><strong>Description:</strong> Retrieve details of a specific movie by title.</p>
+      <p><strong>Response:</strong><br>200 OK: Movie object<br>404 Not Found: Movie not found<br>500 Internal Error: Something went wrong</p>
+    </article>
+
+    <article class="endpoint">
+      <h3>Get Genre Info</h3>
+      <p><strong>Method:</strong> GET</p>
+      <p><strong>URL:</strong> /genre/:Name</p>
+      <p><strong>Parameter:</strong> Name of the genre</p>
+      <p><strong>Description:</strong> Retrieve genre details by name.</p>
+      <p><strong>Response:</strong><br>200 OK: Genre object<br>404 Not Found: Genre not found<br>500 Internal Error: Something went wrong</p>
+    </article>
+
+    <article class="endpoint">
+      <h3>Get Director Info</h3>
+      <p><strong>Method:</strong> GET</p>
+      <p><strong>URL:</strong> /directors/:Name</p>
+      <p><strong>Parameter:</strong> Name of the director</p>
+      <p><strong>Description:</strong> Retrieve director information by name.</p>
+      <p><strong>Response:</strong><br>200 OK: Director object<br>404 Not Found: Director not found<br>500 Internal Error: Something went wrong</p>
+    </article>
+  </section>
+
+  <footer>
+    <p>© 2026 MyFlix API Documentation w/ CareerFoundry</p>
+  </footer>
+</body>
+</html>

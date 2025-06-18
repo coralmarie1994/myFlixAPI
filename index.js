@@ -173,20 +173,44 @@ app.put('/users/:Username', (req, res) => {
 
 //Allow users to add movie to favorites - CREATE/POST  "movie has been added"
 app.post('/users/:Username/movies/:MovieID', async (req, res) => {
-  await Users.findOneAndUpdate({ Username: req.params.Username }, {
-     $push: { FavoriteMovies: req.params.MovieID }
-   },
-   { new: true }) // This line makes sure that the updated document is returned
-  
+  try {
+    const updatedUser = await Users.findOneAndUpdate(
+      { Username: req.params.Username },
+      { $addToSet: { FavoriteMovies: req.params.MovieID } }, // avoids duplicates from course option
+      { new: true } // returns updated document
+    );
+
+    if (!updatedUser) {
+      return res.status(404).send('User not found');
+    }
+
+    res.json(updatedUser);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(`Error: ${err}`);
+  }
+});
 
 //Allow users to remove a movie from favorites- DELETE/DELELTE "movie has been removed"
-app.delete('/users/:Username/movies/:movieID', (req, res) => {
-  Users.findOneAndUpdate(
-    { Username: req.params.Username },
-    { $pull: { favoriteMovies: req.params.movieID } },
-    { new: true }
-  )
-  
+app.delete('/users/:Username/movies/:movieID', async (req, res) => {
+  try {
+    const updatedUser = await Users.findOneAndUpdate(
+      { Username: req.params.Username },
+      { $pull: { FavoriteMovies: req.params.movieID } },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).send('User not found');
+    }
+
+    res.json(updatedUser);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error: ' + error);
+  }
+});
+
 
 //Allow users de-register - DELETE/DELETE "user has been removed"
 app.delete('/users/:Username', (req, res) => {
