@@ -172,18 +172,12 @@ app.put('/users/:Username', (req, res) => {
 });
 
 //Allow users to add movie to favorites - CREATE/POST  "movie has been added"
-app.post('/users/:Username/favorites/:MovieID', (req, res) => {
-  User.findOneAndUpdate(
-    { Username: req.params.Username },
-    { $addToSet: { FavoriteMovies: new mongoose.Types.ObjectId(req.params.MovieID) } },
-    { new: true }
-  )
-    .then((user) => {
-      if (!user) return res.status(404).send('User not found');
-      res.json(user);
-    })
-    .catch((err) => res.status(500).send(err.toString()));
-});
+app.post('/users/:Username/movies/:MovieID', async (req, res) => {
+  await Users.findOneAndUpdate({ Username: req.params.Username }, {
+     $push: { FavoriteMovies: req.params.MovieID }
+   },
+   { new: true }) // This line makes sure that the updated document is returned
+  
 
 //Allow users to remove a movie from favorites- DELETE/DELELTE "movie has been removed"
 app.delete('/users/:Username/movies/:movieID', (req, res) => {
@@ -192,17 +186,7 @@ app.delete('/users/:Username/movies/:movieID', (req, res) => {
     { $pull: { favoriteMovies: req.params.movieID } },
     { new: true }
   )
-  .then((updatedUser) => {
-    if (!updatedUser) {
-      return res.status(404).send('User not found');
-    }
-    res.status(200).send(`Movie was removed from ${req.params.Username}'s favorites.`);
-  })
-  .catch((err) => {
-    console.error(err);
-    res.status(500).send(`Error: ${err}`);
-  });
-});
+  
 
 //Allow users de-register - DELETE/DELETE "user has been removed"
 app.delete('/users/:Username', (req, res) => {
