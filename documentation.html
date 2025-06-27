@@ -81,6 +81,21 @@
       <p><strong>Response:</strong><br>200 OK: Success message<br>404 Not Found: User not found<br>500 Internal Error: Something went wrong</p>
     </article>
 
+    <article class="endpoint">
+      <h3>Login</h3>
+      <p><strong>Method:</strong> POST</p>
+      <p><strong>URL:</strong> /login</p>
+      <p><strong>Parameters:</strong></p>
+      Username: The username of the user to login <br>
+      Password: The password of the user to login
+      <p><strong>Description:</strong> Authenticates a user with the provided username and password. If successful, returns a JSON Web Token (JWT) for authenticated requests.</p>
+      <p><strong>Response:</strong><br>
+        200 OK: Returns a JSON object containing the user data and JWT token.<br>
+        400 Bad Request: Invalid username or password, or authentication failure.<br>
+        500 Internal Server Error: An unexpected error occurred during the login process.
+      </p>
+    </article>
+
     <h2>Movies API Endpoints</h2>
 
     <article class="endpoint">
