@@ -1,2 +1,0 @@
-# myFlixAPI
-API for Movies

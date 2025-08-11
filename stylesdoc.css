@@ -1,0 +1,13 @@
+body {
+  color:rgb(81, 78, 78);
+}
+#introduction {
+  color: black;
+}
+h3{
+  color: black;
+  text-decoration: underline;
+}
+h1, h2 {
+  color: rgb(184, 108, 184);
+}
